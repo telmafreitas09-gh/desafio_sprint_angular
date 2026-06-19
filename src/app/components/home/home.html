@@ -1,0 +1,28 @@
+<div class="home-container d-flex align-items-center justify-content-center vh-100"
+     [style.background-image]="'linear-gradient(rgba(15, 23, 42, 0.75), rgba(15, 23, 42, 0.75)), url(' + urlImagemFundo + ')'">
+  
+  <div class="card text-center p-5 shadow-lg bg-white bg-opacity-95" style="max-width: 500px; border-radius: 15px;">
+    <div class="card-body">
+      
+      <div class="mb-4">
+        <h2 class="text-primary fw-bold tracking-wide">FORD</h2>
+        <hr class="w-25 mx-auto text-primary border-2">
+      </div>
+
+      <h3 class="card-title h4 text-dark mb-3 fw-semibold">Sistema de Gestão Estratégica</h3>
+      <p class="card-text text-muted mb-4 fs-6">
+        Seja bem-vindo ao painel corporativo. Aqui você pode analisar as métricas de vendas, conectividade e atualizações da frota.
+      </p>
+      
+      <a routerLink="/dashboard" class="btn btn-primary btn-lg w-100 mb-3 py-2 fw-bold shadow-sm">
+        Acessar Dashboard
+      </a>
+      
+      <button (click)="logout()" class="btn btn-outline-danger btn-sm w-100 py-2 border-0 fw-semibold">
+        <i class="bi bi-box-arrow-left me-1"></i> Sair do Sistema
+      </button>
+      
+    </div>
+  </div>
+
+</div>

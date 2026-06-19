@@ -1,0 +1,113 @@
+<nav class="navbar navbar-dark bg-dark px-4 shadow-sm">
+  <span class="navbar-brand mb-0 h1 fw-bold">FORD Corporate</span>
+  <a routerLink="/home" class="btn btn-outline-light btn-sm">
+    <i class="bi bi-house-door"></i> Voltar para Home
+  </a>
+</nav>
+
+<div class="container-fluid py-4 bg-light min-vh-100">
+  <div class="text-center mb-4">
+    <h2 class="text-primary fw-bold">Dashboard FORD</h2>
+  </div>
+
+  @if (selectedVehicle) {
+    <div class="row g-3 mb-4 align-items-center">
+      
+      <div class="col-md-3">
+        <div class="card p-3 shadow-sm h-100 bg-white">
+          <label class="form-label fw-bold text-secondary">Modelo do Veículo</label>
+          <select class="form-select text-primary fw-semibold" (change)="onModelChange($event)">
+            @for (car of allVehicles; track car.vin) {
+              <option [value]="car.model">{{ car.model }}</option>
+            }
+          </select>
+        </div>
+      </div>
+
+      <div class="col-md-3">
+        <div class="card p-3 shadow-sm border-start border-primary border-4 text-center">
+          <div class="text-muted small fw-bold">Total de Vendas</div>
+          <div class="fs-3 fw-bold text-dark">{{ selectedVehicle.volummeVendas || 0 }}</div>
+          <span class="badge bg-light text-primary border mt-1">unidades</span>
+        </div>
+      </div>
+
+      <div class="col-md-3">
+        <div class="card p-3 shadow-sm border-start border-success border-4 text-center">
+          <div class="text-muted small fw-bold">Veículos Conectados</div>
+          <div class="fs-3 fw-bold text-success">{{ selectedVehicle.connected || 0 }}</div>
+          <span class="badge bg-light text-success border mt-1">ativos</span>
+        </div>
+      </div>
+
+      <div class="col-md-3">
+        <div class="card p-3 shadow-sm border-start border-info border-4 text-center">
+          <div class="text-muted small fw-bold">Software Atualizado</div>
+          <div class="fs-3 fw-bold text-info">{{ selectedVehicle.softwareUpdates || 0 }}</div>
+          <span class="badge bg-light text-info border mt-1">atualizados</span>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="row justify-content-center mb-5">
+      <div class="col-md-6 text-center">
+        <div class="p-3 bg-white rounded shadow-sm border border-light">
+          <img [src]="selectedVehicle.image" 
+               [alt]="selectedVehicle.model" 
+               class="img-fluid rounded" 
+               style="max-height: 280px; object-fit: contain;">
+          <h4 class="mt-2 text-secondary fw-semibold">{{ selectedVehicle.model }}</h4>
+        </div>
+      </div>
+    </div>
+  } @else {
+    <div class="text-center p-5">
+      <div class="spinner-border text-primary" role="status"></div>
+      <p class="mt-2 text-muted">Aguardando dados da API (Certifique-se de que o npm start da API está rodando)...</p>
+    </div>
+  }
+
+  <div class="card shadow-sm border-0">
+    <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center py-3">
+      <h5 class="mb-0 fw-bold"><i class="bi bi-table"></i> Detalhamento da Frota</h5>
+      
+      <div class="input-group style-search" style="max-width: 350px;">
+        <span class="input-group-text bg-white border-0"><i class="bi bi-search text-muted"></i></span>
+        <input type="text" class="form-control border-0" 
+               placeholder="Buscar por Código (VIN)..." 
+               [(ngModel)]="filtroVin">
+      </div>
+    </div>
+    
+    <div class="table-responsive">
+      <table class="table table-hover align-middle mb-0 text-center">
+        <thead class="table-light">
+          <tr>
+            <th>Código (VIN)</th>
+            <th>Modelo</th>
+            <th>Vendas</th>
+            <th>Conectados</th>
+            <th>Software OK</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (vehicle of filteredVehiclesTable; track vehicle.vin) {
+            <tr>
+              <td class="text-start font-monospace text-primary fw-semibold">{{ vehicle.vin }}</td>
+              <td><span class="badge bg-secondary px-2 py-1">{{ vehicle.model }}</span></td>
+              <td>{{ vehicle.volummeVendas }}</td>
+              <td>{{ vehicle.connected }}</td>
+              <td>{{ vehicle.softwareUpdates }}</td>
+            </tr>
+          } @empty {
+            <tr>
+              <td colspan="5" class="text-center text-muted py-4">Nenhum veículo encontrado com esse Código (VIN).</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+

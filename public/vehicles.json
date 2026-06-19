@@ -1,0 +1,26 @@
+[
+  {
+    "vin": "2FRHDUYS2Y63NHD22454",
+    "model": "Ranger Raptor",
+    "volummeVendas": 1500,
+    "connected": 500,
+    "softwareUpdates": 350,
+    "image": "http://localhost:3001/img/ranger.png"
+  },
+  {
+    "vin": "3FA6P0HD8HR123456789",
+    "model": "Mustang GT",
+    "volummeVendas": 4563,
+    "connected": 3010,
+    "softwareUpdates": 2980,
+    "image": "http://localhost:3001/img/mustang.png"
+  },
+  {
+    "vin": "1FTFW1ED5KF987654321",
+    "model": "Territory",
+    "volummeVendas": 890,
+    "connected": 750,
+    "softwareUpdates": 710,
+    "image": "http://localhost:3001/img/territory.png"
+  }
+]
